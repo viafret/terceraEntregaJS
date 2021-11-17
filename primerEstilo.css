@@ -1,0 +1,204 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.titulo1 {
+  color: rgb(1, 111, 144);
+}
+.titulo2 {
+  color: rebeccapurple;
+}
+.ult {
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.lista__productos--botonAgregar {
+  color: rgb(86, 131, 2);
+  background-color: rgb(128, 231, 138);
+  font: size 20px;
+  margin: 5px;
+}
+.seccionProductos {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.seccionAccesorios {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.seccionAccesorios div:nth-child(1) {
+  background-color: #2a9d8f;
+}
+.seccionAccesorios div:nth-child(2) {
+  background-color: #e9c46a;
+}
+.seccionAccesorios div:nth-child(3) {
+  background-color: #f4a261;
+}
+.seccionProductos div:nth-child(1) {
+  background-color: #2a9d8f;
+}
+.seccionProductos div:nth-child(2) {
+  background-color: #e9c46a;
+}
+.seccionProductos div:nth-child(3) {
+  background-color: #f4a261;
+}
+.seccionProductos div {
+  width: 30%;
+  text-align: center;
+  border: 2px solid black;
+}
+.seccionAccesorios div {
+  width: 30%;
+  text-align: center;
+  border: 2px solid black;
+}
+
+#listaProductosAgregados {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#listaProductosAgregados div {
+  width: 30%;
+  text-align: center;
+  border: 2px solid black;
+}
+
+#listaAccesoriosAgregados {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#listaAccesoriosAgregados div {
+  width: 30%;
+  text-align: center;
+  border: 2px solid black;
+}
+
+#total {
+  background-color: black;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  margin: 1 px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#sinProducto {
+  color: rgb(86, 131, 2);
+  background-color: rgb(128, 231, 138);
+  font: size 20px;
+  margin: 5px;
+}
+
+#sinAccesorio {
+  color: rgb(86, 131, 2);
+  background-color: rgb(128, 231, 138);
+  font: size 20px;
+  margin: 5px;
+}
+*/ table {
+  border: 3px solid;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+th {
+  background-color: #cccccc;
+  border: 1px solid;
+}
+
+tr {
+  border: 1px solid;
+}
+td {
+  background-color: rgb(187, 255, 255);
+  border: 1px solid;
+}
+
+ul {
+  color: rgb(7, 70, 95);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+/*damos formato a los h1*/
+header h1 {
+  border: 1 px darkcyan;
+  color: rgb(211, 112, 0);
+  width: 100%;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+}
+
+/*damos formato a los h2*/
+h2 {
+  background-color: rgb(231, 212, 209);
+  color: rgb(19, 199, 139);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*damos formato a los h2*/
+h3 {
+  text-align: center;
+  color: crimson;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*damos formato a los h4*/
+h4 {
+  color: brown;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*definimos el color de texto de los parrafos*/
+p {
+  color: rgb(63, 16, 16);
+  font-size: 18px;
+  font-style: italic;
+}
+
+/*definimos un tipo de texto particular*/
+
+.body__header--text {
+  color: blueviolet;
+  font-family: Roboto;
+}
+
+menu__list--header {
+  color: rgb(38, 255, 0);
+  font-family: roboto;
+  font-style: italic;
+}
+.menu__list--item {
+  line-height: 1.6;
+  color: rgb(155, 155, 7);
+  font-family: roboto;
+  font-size: 15px;
+}
+a {
+  line-height: 1.6;
+  text-decoration: none;
+  color: blue;
+  font-family: roboto;
+  font-size: 20px;
+}
+
+.lista__accesorios--botonAgregar {
+  color: rgb(199, 19, 79);
+  background-color: rgb(197, 166, 107);
+  font: size 20px;
+  margin: 5px;
+}
