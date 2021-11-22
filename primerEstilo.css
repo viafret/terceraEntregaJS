@@ -5,20 +5,38 @@
 
 .titulo1 {
   color: rgb(1, 111, 144);
+  margin: 5px;
+  padding: 5px;
 }
 .titulo2 {
   color: rebeccapurple;
+  margin: 5px;
+  padding: 5px;
 }
 .ult {
   color: black;
   font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 .lista__productos--botonAgregar {
   color: rgb(86, 131, 2);
   background-color: rgb(128, 231, 138);
-  font: size 20px;
+  font-size: 20px;
   margin: 5px;
+  padding: 5px;
+  text-decoration: none;
 }
+
+.lista__productos--botonEliminar {
+  color: rgb(216, 116, 33);
+  background-color: rgb(255, 255, 255);
+  font-size: 15px;
+  margin: 5px;
+  padding: 5px;
+  text-decoration: none;
+  display: block;
+}
+
 .seccionProductos {
   width: 100%;
   display: flex;
@@ -31,33 +49,78 @@
   justify-content: space-around;
   font-family: Arial, Helvetica, sans-serif;
 }
-.seccionAccesorios div:nth-child(1) {
-  background-color: #2a9d8f;
-}
-.seccionAccesorios div:nth-child(2) {
-  background-color: #e9c46a;
-}
-.seccionAccesorios div:nth-child(3) {
-  background-color: #f4a261;
-}
-.seccionProductos div:nth-child(1) {
-  background-color: #2a9d8f;
-}
-.seccionProductos div:nth-child(2) {
-  background-color: #e9c46a;
-}
-.seccionProductos div:nth-child(3) {
-  background-color: #f4a261;
-}
+
 .seccionProductos div {
   width: 30%;
   text-align: center;
+  background-color: #9ef4ea;
   border: 2px solid black;
+  display: flex;
+  justify-content: space-around;
 }
 .seccionAccesorios div {
   width: 30%;
   text-align: center;
+  background-color: #e9c46a;
   border: 2px solid black;
+  display: flex;
+  justify-content: space-around;
+}
+
+.body__header--text {
+  color: blueviolet;
+  font-family: Roboto;
+}
+
+.menu__list--header {
+  background-color: #333;
+  color: rgb(38, 255, 0);
+  font-family: roboto;
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background-color: #f3f3f3;
+}
+.menu__list--item {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+.menu__list--item a {
+  line-height: 1.6;
+  text-decoration: none;
+  color: #666;
+  text-align: center;
+  font-family: roboto;
+  font-size: 18px;
+  display: block;
+  padding: 8px 12px;
+}
+
+.menu__list--item a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.lista__accesorios--botonAgregar {
+  color: rgb(199, 19, 79);
+  background-color: rgb(197, 166, 107);
+  font-size: 20px;
+  margin: 5px;
+  padding: 5px;
+  text-decoration: none;
+  display: block;
+}
+
+.lista__accesorios--botonEliminar {
+  color: rgb(216, 116, 33);
+  background-color: rgb(255, 255, 255);
+  font-size: 15px;
+  margin: 5px;
+  padding: 5px;
+  text-decoration: none;
+  display: block;
 }
 
 #listaProductosAgregados {
@@ -70,8 +133,17 @@
 
 #listaProductosAgregados div {
   width: 30%;
+  display: flex;
+  justify-content: space-around;
   text-align: center;
   border: 2px solid black;
+}
+
+#listaProductosAgregados div p {
+  margin: 5px;
+  padding: 5px;
+  font-weight: bold;
+  color: #1e6666;
 }
 
 #listaAccesoriosAgregados {
@@ -84,16 +156,27 @@
 
 #listaAccesoriosAgregados div {
   width: 30%;
+  display: flex;
+  justify-content: space-around;
   text-align: center;
   border: 2px solid black;
+}
+
+#listaAccesoriosAgregados div p {
+  margin: 5px;
+  padding: 5px;
+  font-weight: bold;
+  color: #1e6666;
 }
 
 #total {
   background-color: black;
   text-align: center;
   color: white;
+  font-size: 25px;
   font-weight: bold;
-  margin: 1 px;
+  margin: 5px;
+  padding: 5px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -110,7 +193,28 @@
   font: size 20px;
   margin: 5px;
 }
-*/ table {
+
+#destino h3 {
+  color: #8f528f;
+  text-align: left;
+  margin: 10px;
+}
+
+#destino div {
+  color: #973d5185;
+  margin: 10px;
+  position: relative;
+  font-family: Roboto;
+}
+
+#destino div select {
+  color: #3c1d5085;
+
+  font-family: Arial;
+  font-weight: bold;
+}
+
+table {
   border: 3px solid;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -135,10 +239,9 @@ ul {
 }
 
 /*damos formato a los h1*/
-header h1 {
+h1 {
   border: 1 px darkcyan;
   color: rgb(211, 112, 0);
-  width: 100%;
   text-align: center;
   font-family: "Lato", sans-serif;
 }
@@ -150,7 +253,7 @@ h2 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/*damos formato a los h2*/
+/*damos formato a los h3*/
 h3 {
   text-align: center;
   color: crimson;
@@ -161,6 +264,9 @@ h3 {
 h4 {
   color: brown;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  padding: 5px;
 }
 
 /*definimos el color de texto de los parrafos*/
@@ -168,37 +274,8 @@ p {
   color: rgb(63, 16, 16);
   font-size: 18px;
   font-style: italic;
+  margin: 1px;
+  padding: 5px;
 }
 
 /*definimos un tipo de texto particular*/
-
-.body__header--text {
-  color: blueviolet;
-  font-family: Roboto;
-}
-
-menu__list--header {
-  color: rgb(38, 255, 0);
-  font-family: roboto;
-  font-style: italic;
-}
-.menu__list--item {
-  line-height: 1.6;
-  color: rgb(155, 155, 7);
-  font-family: roboto;
-  font-size: 15px;
-}
-a {
-  line-height: 1.6;
-  text-decoration: none;
-  color: blue;
-  font-family: roboto;
-  font-size: 20px;
-}
-
-.lista__accesorios--botonAgregar {
-  color: rgb(199, 19, 79);
-  background-color: rgb(197, 166, 107);
-  font: size 20px;
-  margin: 5px;
-}

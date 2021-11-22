@@ -66,6 +66,7 @@ $(() => {
   $(".lista__accesorios--botonAgregar").click(definAcc);
 });
 
-$(() => {
-  $(".lista__productos--botonEliminar").click(eliminarProd);
-});
+let APIPROVINCIAS = "https://apis.datos.gob.ar/georef/api/provincias";
+let provincias = [{ id: -1, nombre: "SELECCIONAR PROVINCIA" }];
+let municipios = [{ id: -1, nombre: "SELECCIONAR CIUDAD" }];
+let costoEnvio = 0;

@@ -76,47 +76,57 @@ function seleccion(e) {
 }
 
 function listaProdAgregados(_producto) {
-  let agregado = document.getElementById("listaProductosAgregados");
-  let contenedor = document.createElement("div");
-  let producto = document.createElement("p");
-  let boton = document.createElement("a");
-  boton.href = `#`;
-  boton.className = `lista__productos--botonEliminar`;
-  producto.innerHTML = `${_producto}`;
-  boton.innerHTML = `Eliminar`;
+  $("#listaProductosAgregados")
+    .prepend(
+      `<div id="${_producto}">
+    <p>${_producto}
+    </p>
+    <a href="#"  class="lista__productos--botonEliminar">Eliminar</a>
+    </div>`
+    )
+    .hide()
+    .fadeIn(1000);
+
   $("#sinProducto").hide();
-  agregado.appendChild(contenedor);
-  contenedor.appendChild(producto);
-  contenedor.appendChild(boton);
-  //$(".lista__productos--botonEliminar").click(eliminarProd);
+
+  let botEliminarProd = document.querySelectorAll(
+    ".lista__productos--botonEliminar"
+  );
+
+  for (let boton of botEliminarProd) {
+    boton.addEventListener("click", eliminarProd);
+  }
 }
 
 function eliminarProd(e) {
   e.preventDefault();
   let prods = JSON.parse(sessionStorage.getItem("Productos"));
   let hijo = e.target;
-  let padre1 = hijo.parentElement;
-  let padre2 = padre1.parentElement;
+  let padre1 = hijo.parentNode;
+  let padre2 = padre1.parentNode;
 
   console.log(hijo);
   console.log(padre1);
   console.log(padre2);
 
   let prodAdd = prods[0].cantidad + prods[1].cantidad + prods[2].cantidad;
-
-  descartar(padre1.firstChild.innerText);
+  let producto = padre1.id;
+  console.log(producto);
 
   if (prodAdd > 1) {
     console.log("Quiere eliminar el producto!");
     console.log(hijo);
     console.log(padre1);
     console.log(padre2);
-
+    //$(`#${padre1.id}`).fadeOut("slow");
     padre2.removeChild(padre1);
+    $();
   } else {
+    //$(`#${padre1.id}`).fadeOut("slow");
     padre2.removeChild(padre1);
-    $("#sinProducto").show();
+    $("#sinProducto").fadeIn(1000);
   }
+  descartar(producto);
   sumar();
 }
 
@@ -153,11 +163,9 @@ function accesorioAlmacenado() {
     actualizarProductos();
   } else {
     const almacenados = JSON.parse(localStorage.getItem("productosLocal"));
-
     aCant[0] = almacenados[4];
     aCant[1] = almacenados[5];
     aCant[2] = almacenados[6];
-
     for (index = 0; index < 3; index++) {
       if ((aCant[index] = !0)) {
         for (i = 0; i < aCant[index]; i++);
@@ -170,17 +178,17 @@ function accesorioAlmacenado() {
 }
 
 function listaAcceAgregados(_tipoAcce) {
-  let agregado = document.getElementById("listaAccesoriosAgregados");
-
-  let accesorio = document.createElement("p");
-  let boton = document.createElement("a");
-  boton.href = `#`;
-  boton.className = `lista__accesorios--botonEliminar`;
+  $("#listaAccesoriosAgregados")
+    .prepend(
+      `<div id="${_tipoAcce}">
+    <p>${_tipoAcce}
+    </p>
+  <a href="#" class="lista__accesorios--botonEliminar">Eliminar</a>
+  </div>`
+    )
+    .hide()
+    .fadeIn(1000);
   $("#sinAccesorio").hide();
-  accesorio.innerHTML = `${_tipoAcce}`;
-  boton.innerHTML = `Eliminar`;
-  agregado.appendChild(accesorio);
-  accesorio.appendChild(boton);
 
   let botEliminarAcce = document.querySelectorAll(
     ".lista__accesorios--botonEliminar"
@@ -196,19 +204,18 @@ function eliminarAcces(e) {
   let hijo = e.target;
   let padre1 = hijo.parentNode;
   let padre2 = hijo.parentNode.parentNode;
-
   let accesAdd = aCant[0] + aCant[1] + aCant[2];
   if (accesAdd > 1) {
     console.log("Quiere eliminar el accesorio!");
-
+    //$(`#${padre1.id}`).fadeOut("slow");
     padre2.removeChild(padre1);
   } else {
+    //$(`#${padre1.id}`).fadeOut("slow");
     padre2.removeChild(padre1);
-
-    $("#sinAccesorio").show();
+    $("#sinAccesorio").fadeIn(1000);
   }
 
-  descartarAcce(padre1.firstChild.data);
+  descartarAcce(padre1.id);
   sumar();
 }
 
@@ -269,4 +276,99 @@ function sumar() {
 
   total.textContent = `Total: ${totalSuma}$`;
   actualizarProductos();
+}
+
+//API
+function selectLista(array, id) {
+  let innerSelect = "";
+  array.forEach(
+    (provincia) =>
+      (innerSelect += `<option value="${provincia.id}">${provincia.nombre}</option>`)
+  );
+  return `<select id="${id}">${innerSelect}</select>`;
+}
+
+$(document).ready(function () {
+  //LLAMAR AL API DE PROVINCIAS
+  $.get(APIPROVINCIAS, function (datos, estado) {
+    if (estado === "success") {
+      provincias.push(...datos.provincias);
+      console.log(provincias);
+      //AGREGAMOS SELECT,ESCUCHAMOS EL EVENTO CHANGE Y FILTRAMOS LA SALIDA
+      $("#destino").prepend(
+        `<h3>Datos para el envío</h3> <div>Seleccione la provincia destino: ${selectLista(
+          provincias,
+          "provinciasSelect"
+        )}</div> <div id="municipios"><div>`
+      );
+
+      $("#municipios").html(
+        `Seleccione la ciudad: ${selectLista(municipios, "municipioSelect")}`
+      );
+
+      $("#destino").append("<h4 id='salidaProvincias'></h4>");
+
+      $("#destino").append("<h4 id='salidaMunicipios'></h4>");
+
+      $("#destino").append(`<h4 id="costoEnvio"></h4>`);
+
+      $("#costoEnvio").hide();
+
+      $("#provinciasSelect").change(function (e) {
+        const seleccionado = provincias.find((obj) => obj.id == e.target.value);
+        if (seleccionado.id != -1) {
+          $("#salidaProvincias").html(
+            `Provincia destino del envío: ${seleccionado.nombre.toUpperCase()}`
+          );
+          console.log(seleccionado.nombre);
+        } else {
+          $("#salidaProvincias").html(`Seleccione la provincia de destino`);
+        }
+        console.log(seleccionado.nombre);
+        cargarMunicios(seleccionado.id);
+
+        if (seleccionado.id < 3) {
+          costoEnvio = 500;
+        } else if (3 <= seleccionado.id <= 80) {
+          costoEnvio = 1000;
+        } else {
+          costoEnvio = 1500;
+        }
+      });
+    }
+  });
+});
+
+function cargarMunicios(provincia) {
+  let municipios = [{ id: -1, nombre: "SELECCIONAR CIUDAD" }];
+  $("#salidaMunicipios").hide();
+  $("#costoEnvio").hide();
+  let apiMunicipios = `https://apis.datos.gob.ar/georef/api/municipios?provincia=${provincia}&campos=id,nombre&max=100`;
+  console.log(apiMunicipios);
+  //SE REALIZA LA LLAMADA GET Y SE CARGAR EL SELECT
+  $.get(apiMunicipios, function (datos, estado) {
+    if (estado === "success") {
+      municipios.push(...datos.municipios);
+      console.log(municipios);
+      $("#municipios").html(
+        `Seleccione la ciudad: ${selectLista(municipios, "municipioSelect")}`
+      );
+      $("#municipioSelect").change(function (e) {
+        const seleccionado = municipios.find((obj) => obj.id == e.target.value);
+        $("#salidaMunicipios")
+          .html(`Ciudad ${seleccionado.nombre.toUpperCase()}`)
+          .show(1000)
+          .delay(500);
+        let prodAdd =
+          mueblesDisp[0].cantidad +
+          mueblesDisp[1].cantidad +
+          mueblesDisp[2].cantidad;
+        if (prodAdd != 0) {
+          $("#costoEnvio").html(`Total envío $: ${costoEnvio} `).show(1000);
+        } else {
+          $("#costoEnvio").html(`No seleccionó productos!`).show();
+        }
+      });
+    }
+  });
 }
